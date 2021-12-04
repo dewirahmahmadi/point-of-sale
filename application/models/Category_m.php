@@ -5,8 +5,7 @@ class Category_m extends CI_Model {
     /**
      * Get category 
      */
-    public function get($id = null) 
-    {
+    public function get($id = null){
         $this->db->from('p_category');
         if ($id != null) {
             $this->db->where('category_id', $id);
@@ -18,14 +17,12 @@ class Category_m extends CI_Model {
     /**
      * Method used to Add category
      */
-    public function add($post) 
-    {
+    public function add($post){
         $params['name'] = $post['category_name'];
         $this->db->insert('p_category', $params);
     }
 
-    public function edit($post) 
-    {
+    public function edit($post){
         $params = [
             'name' => $post['category_name'],
             'updated' => date('Y-m-d H:i:s')
@@ -39,8 +36,7 @@ class Category_m extends CI_Model {
      * Delete category
      *
      */
-    public function delete($id) 
-    {
+    public function delete($id){
         $this->db->where('category_id', $id);
         $this->db->delete('p_category');
     }

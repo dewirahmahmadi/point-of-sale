@@ -62,5 +62,16 @@ class Sale_m extends CI_Model {
         return $this->db->insert_id();
     }
 
+	public function add_sale_detail($post, $sale_id) {
+		$data = [
+			'sale_id' => $sale_id,
+			'qty' => $post['qty'],
+			'item_id' => $post['item_id'],
+			'total' => $post['total']
+		];
+
+		$this->db->insert('t_sale_detail', $data);
+	}
+
 
 }

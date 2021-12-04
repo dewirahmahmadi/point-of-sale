@@ -12,14 +12,12 @@ class Customer extends CI_Controller {
 	/**
 	 * Controller to display customer data
 	 */
-	public function index()
-	{
+	public function index(){
 		$data['row'] = $this->customer_m->get();
 		$this->template->load('template', 'customer/customer_data', $data);
 	}
 
-	public function add() 
-	{
+	public function add(){
 		$customer = new stdClass();
 		$customer->customer_id = null;
 		$customer->gender = null;
@@ -33,8 +31,7 @@ class Customer extends CI_Controller {
 		$this->template->load('template', 'customer/customer_form', $data);
 	}
 
-	public function edit($id) 
-	{
+	public function edit($id){
 		$query = $this->customer_m->get($id);
 		if ($query->num_rows() > 0) {
 			$customer = $query->row();
@@ -48,8 +45,7 @@ class Customer extends CI_Controller {
 		}
 	}
 
-	public function process()
-	{
+	public function process(){
 		$post = $this->input->post(null, TRUE);
 		if (isset($_POST['add'])) {
 			$this->customer_m->add($post);
@@ -66,8 +62,7 @@ class Customer extends CI_Controller {
 	/**
 	 * Controller to delete customer
 	 */
-	public function delete($id) 
-	{
+	public function delete($id){
 		$this->customer_m->delete($id);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', "Data successfully deleted!");

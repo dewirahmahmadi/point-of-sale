@@ -1,5 +1,5 @@
 <script id="table-item" type="x-tmpl-mustache">
-	<tr id="{{id}}">
+	<tr id="{{id}}" data-id={{id}}>
 		<td>{{barcode}}</td>
 		<td>{{productName}}</td>
 		<td>{{stock}}</td>

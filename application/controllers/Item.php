@@ -12,8 +12,7 @@ class item extends CI_Controller {
 	/**
 	 * Display Item Listing
 	 */
-	public function index()
-	{
+	public function index(){
 		$data['row'] = $this->item_m->get();
 		$this->template->load('template', 'product/item/item_data', $data);
 	}
@@ -21,8 +20,7 @@ class item extends CI_Controller {
 	/**
 	 * Display Add Form Item
 	 */
-	public function add() 
-	{
+	public function add(){
 		$item = new stdClass();
 		$item->item_id = null;
         $item->barcode = null;
@@ -46,8 +44,7 @@ class item extends CI_Controller {
 	/**
 	 * Display Edit Form Item
 	 */
-	public function edit($id) 
-	{   
+	public function edit($id){
 		$query = $this->item_m->get($id);
 		if ($query->num_rows() > 0) {
 			$item = $query->row();
@@ -65,8 +62,7 @@ class item extends CI_Controller {
         }
 	}
 
-	public function process()
-	{
+	public function process(){
 		$post = $this->input->post(null, TRUE);
 		if (isset($_POST['add'])) {
             if ($this->item_m->check_barcode($post['barcode'])->num_rows() > 0) {
@@ -109,8 +105,7 @@ class item extends CI_Controller {
 	/**
 	 * Controller to delete item
 	 */
-	public function delete($id) 
-	{
+	public function delete($id){
 		$this->item_m->delete($id);
 		if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', "Data successfully deleted!");

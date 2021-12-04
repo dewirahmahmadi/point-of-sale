@@ -29,7 +29,7 @@
 								<td><?= indo_currency($item->price); ?></td>
 								<td><?= $item->stock; ?></td>
 								<td align="center">
-									<button class="btn btn-xs btn-info" id="js-select-cart" data-id="<?= $item->item_id; ?>" data-barcode="<?= $item->barcode; ?>" data-name="<?= $item->name; ?>" data-price="<?= $item->price; ?>" data-stock="<?= $item->stock; ?>">
+									<button class="btn btn-xs btn-info" id="js-select-cart" <?= $item->stock == 0 ? 'disabled' : '' ?> data-id="<?= $item->item_id; ?>" data-barcode="<?= $item->barcode; ?>" data-name="<?= $item->name; ?>" data-price="<?= $item->price; ?>" data-stock="<?= $item->stock; ?>">
 										<i class="fa fa-check"></i> Select
 									</button>
 								</td>
@@ -65,9 +65,9 @@
 						<div class="form-group ">
 								<label for="sub_total">Discount</label>
 								<div class="input-group">
-								<input type="text" id="discount" class="form-control" >
+								<input type="number" id="discount" class="form-control" >
 									<span class="input-group-btn">
-										<button type="button" class="btn btn-info btn-flat">
+										<button type="button" class="btn btn-info btn-flat js-apply-discount">
 											Apply Discount
 										</button>
 									</span>
@@ -86,8 +86,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="total">Cash</label>
-								<input type="total" id="cash" class="form-control">
+								<label>Cash</label>
+								<input type="number" id="cash" class="form-control">
 							</div>
 						</div>
 					</div>		
@@ -102,7 +102,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-                <button type="button" class="btn btn-primary js-process-payment" data-url="<?= site_url('sale/process') ?>">Process Payment</button>
+                <button type="button" class="btn btn-primary js-process-payment" data-url="<?=site_url('sale/process')?>">Process Payment</button>
               </div>
 		</div>
 	</div>
@@ -118,11 +118,15 @@
 				<h4 class="modal-title">Payment Success</h4>
 			</div>
 			<div class="modal-body table-responsive">
-				<div class="container-fluid">		
+				<div class="container-fluid text-center">
+					<h1>Payment Successfull!</h1>
+					<p>You have complete your payment!</p>
+					<h2>Total Payment: <br> <strong class="js-success-total">10000</strong><h2>
+					<h3>Remain: <br> <strong class="js-success-remain">10000</strong><h3>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info">OK & Print Invoice</button>
+				<a href="<?=site_url('sale/print_invoice')?>" class="btn btn-info js-success-print">OK & Print Invoice</a>
                 <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
               </div>
 		</div>

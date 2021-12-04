@@ -5,8 +5,7 @@ class Customer_m extends CI_Model {
     /**
      * Get customer 
      */
-    public function get($id = null) 
-    {
+    public function get($id = null){
         $this->db->from('customer');
         if ($id != null) {
             $this->db->where('customer_id', $id);
@@ -18,8 +17,7 @@ class Customer_m extends CI_Model {
     /**
      * Method used to Add customer
      */
-    public function add($post) 
-    {
+    public function add($post){
         $params = [
             'name' => $post['customer_name'],
             'gender' => $post['gender'],
@@ -30,8 +28,7 @@ class Customer_m extends CI_Model {
         $this->db->insert('customer', $params);
     }
 
-    public function edit($post) 
-    {
+    public function edit($post){
         $params = [
             'name' => $post['customer_name'],
             'gender' => $post['gender'],
@@ -48,8 +45,7 @@ class Customer_m extends CI_Model {
      * Delete customer
      *
      */
-    public function delete($id) 
-    {
+    public function delete($id){
         $this->db->where('customer_id', $id);
         $this->db->delete('customer');
     }

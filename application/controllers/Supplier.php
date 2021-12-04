@@ -12,14 +12,12 @@ class Supplier extends CI_Controller {
 	/**
 	 * Controller to display supplier data
 	 */
-	public function index()
-	{
+	public function index(){
 		$data['row'] = $this->supplier_m->get();
 		$this->template->load('template', 'supplier/supplier_data', $data);
 	}
 
-	public function add() 
-	{
+	public function add(){
 		$supplier = new stdClass();
 		$supplier->supplier_id = null;
 		$supplier->name = null;
@@ -33,8 +31,7 @@ class Supplier extends CI_Controller {
 		$this->template->load('template', 'supplier/supplier_form', $data);
 	}
 
-	public function edit($id) 
-	{
+	public function edit($id){
 		$query = $this->supplier_m->get($id);
 		if ($query->num_rows() > 0) {
 			$supplier = $query->row();
@@ -48,8 +45,7 @@ class Supplier extends CI_Controller {
 		}
 	}
 
-	public function process()
-	{
+	public function process(){
 		$post = $this->input->post(null, TRUE);
 		if (isset($_POST['add'])) {
 			$this->supplier_m->add($post);
@@ -66,8 +62,7 @@ class Supplier extends CI_Controller {
 	/**
 	 * Controller to delete supplier
 	 */
-	public function delete($id) 
-	{
+	public function delete($id){
 		$this->supplier_m->delete($id);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', "Data successfully deleted!");

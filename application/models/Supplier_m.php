@@ -5,8 +5,7 @@ class Supplier_m extends CI_Model {
     /**
      * Get Supplier 
      */
-    public function get($id = null) 
-    {
+    public function get($id = null){
         $this->db->from('supplier');
         if ($id != null) {
             $this->db->where('supplier_id', $id);
@@ -18,8 +17,7 @@ class Supplier_m extends CI_Model {
     /**
      * Method used to Add Supplier
      */
-    public function add($post) 
-    {
+    public function add($post){
         $params = [
             'name' => $post['supplier_name'],
             'phone' => $post['phone'],
@@ -30,8 +28,7 @@ class Supplier_m extends CI_Model {
         $this->db->insert('supplier', $params);
     }
 
-    public function edit($post) 
-    {
+    public function edit($post){
         $params = [
             'name' => $post['supplier_name'],
             'phone' => $post['phone'],
@@ -48,8 +45,7 @@ class Supplier_m extends CI_Model {
      * Delete Supplier
      *
      */
-    public function delete($id) 
-    {
+    public function delete($id){
         $this->db->where('supplier_id', $id);
         $this->db->delete('supplier');
     }

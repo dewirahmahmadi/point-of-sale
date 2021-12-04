@@ -12,14 +12,12 @@ class Category extends CI_Controller {
 	/**
 	 * Controller to display category data
 	 */
-	public function index()
-	{
+	public function index(){
 		$data['row'] = $this->category_m->get();
 		$this->template->load('template', 'product/category/category_data', $data);
 	}
 
-	public function add() 
-	{
+	public function add(){
 		$category = new stdClass();
 		$category->category_id = null;
 		$category->name = null;
@@ -30,8 +28,7 @@ class Category extends CI_Controller {
 		$this->template->load('template', 'product/category/category_form', $data);
 	}
 
-	public function edit($id) 
-	{   
+	public function edit($id){
 		$query = $this->category_m->get($id);
 		if ($query->num_rows() > 0) {
 			$category = $query->row();
@@ -45,8 +42,7 @@ class Category extends CI_Controller {
         }
 	}
 
-	public function process()
-	{
+	public function process(){
 		$post = $this->input->post(null, TRUE);
 		if (isset($_POST['add'])) {
 			$this->category_m->add($post);
@@ -63,8 +59,7 @@ class Category extends CI_Controller {
 	/**
 	 * Controller to delete category
 	 */
-	public function delete($id) 
-	{
+	public function delete($id){
 		$this->category_m->delete($id);
 		if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', "Data successfully deleted!");

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myPos</title>
+    <title>Point Of Sale</title>
     <style type="text/css">
         html {
             font-family: "Verdana, Arial";
@@ -53,11 +53,7 @@
 <body onload="window.print()">
     <div class="content">
         <div class="title">
-            <b>myPOS</b>
-            <br>
-            Jakarta Pusat
-            <br>
-            Jln Jenderal Sudirman
+            <b>Point Of Sale</b>
         </div>
 
         <div class="head">
@@ -94,21 +90,11 @@
                         <td><?= $sd->qty; ?></td>
                         <td style="text-align: right;width:60px;"><?= indo_currency($sd->price); ?></td>
                         <td style="text-align: right;width:60px;">
-                            <?= indo_currency(($sd->price - $sd->discount_item) * $sd->qty); ?>
+                            <?= indo_currency(($sd->price * $sd->qty)); ?>
                         </td>
                     </tr>
-                    <?php
-                    if ($sd->discount_item > 0) {
-                        $arr_discount[] = $sd->discount_item;
-                    }
-                }
-                foreach ($arr_discount as $ad) { ?>
-                    <tr>
-                        <td></td>
-                        <td colspan="2" style="text-align: right;">Disc. <?= $ad + 1; ?></td>
-                        <td style="text-align: right;"><?= indo_currency($ad); ?></td>
-                    </tr>
-                <?php } ?>
+                    <?php } ?>
+
                 <tr>
                     <td colspan="4" style="border-bottom: 1px dashed;padding-top:5px;"></td>
                 </tr>
@@ -146,7 +132,7 @@
                     <td colspan="2"></td>
                     <td style="text-align: right;">Change</td>
                     <td style="text-align: right;">
-                        <?= indo_currency($sale->uang_kembalian); ?>
+                        <?= indo_currency($sale->remaining); ?>
                     </td>
                 </tr>
             </table>
@@ -154,7 +140,7 @@
         <div class="thanks">
             ---Thank You---
             <br>
-            myPOS
+            Poin Of Sale
         </div>
     </div>
 </body>

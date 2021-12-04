@@ -71,8 +71,7 @@ class User extends CI_Controller {
 		}
 	}
 
-    public function delete($id) 
-    {
+    public function delete($id){
         $this->user_m->del($id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', "Data successfully deleted!");
