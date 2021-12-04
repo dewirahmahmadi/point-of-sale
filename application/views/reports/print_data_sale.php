@@ -20,36 +20,34 @@
 			color: white;
 		}
 	</style>
-	<title>Laporan Invoice : <?= $report['invoice'] ?></title>
+	<title>Laporan Invoice : <?= $report[0]->invoice ?></title>
 </head>
 
 <body>
-<?php if($report['customer_name'] == null){ $cust = 'Umum'; }else{ $cust = $report['customer_name']; } ?>
-<?= '<b><h2 style="text-align: center;"> Laporan Invoice : ' . $report['invoice'] . '</h2></b>' ?>
-<?= '<br>' ?>
-<?= '<table>
-	        <tr>
-	            <th>Invoice</th>
-	            <th>Name Costumer</th>
-	            <th>Item Name</th>
-	            <th>Price</th>
-	            <th>Qty</th>
-	            <th>Discount Item</th>
-	            <th>Note</th>
-	            <th>Date</th>
-	        </tr>
-	        <tr>
-	            <td>'.$report['invoice'].'</td>
-	            <td>'.$cust.'</td>
-	            <td>'.$report['item_name'].'</td>
-	            <td>'.indo_currency($report['price']).'</td>
-	            <td>'.$report['qty'].'</td>
-	            <td>'.indo_currency($report['discount']).'</td>
-	            <td>'.$report['note'].'</td>
-	            <td>'.indo_date($report['date']).'</td>
-	        </tr>
-	    </table>'; ?>
+	<b><h2 style="text-align: center;">Laporan Invoice</h2></b>
+	<br>
+	<h4>Invoice No:  <?= $report[0]->invoice ?></h4>
+	<h4>Date:  <?= indo_date($report[0]->date) ?></h4>
+	<h4>Customer:  <?= $report[0]->customer_name ? $report[0]->customer_name : 'Umum' ?></h4>
+	<h4>Note:  <?= $report[0]->note ?  $report[0]->note : '-'?></h4>
+	<h4>Total Payment:  <?= indo_currency($report[0]->final_price) ?></h4>
+	<table>
+		<tr>
+			<th>Item Name</th>
+			<th>Price</th>
+			<th>Qty</th>
+			<th>Total</th>
+		</tr>
+		<?php foreach ($report as $item) { ?>
+			<tr>
+				<td><?= $item->item_name ?></td>
+				<td><?= indo_currency($item->price) ?></td>
+				<td><?= $item->qty ?></td>
+				<td><?= indo_currency($item->qty * $item->price) ?></td>
+			</tr>
+		<?php } ?>
 
+	</table>
 </body>
 
 </html>

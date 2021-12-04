@@ -6,6 +6,9 @@
 		<td>{{price}}</td>
 		<td class="js-cart-qty">1</td>
 		<td align="center">
+			<button class="btn btn-xs btn-info js-edit-cart" data-item="{{id}}" data-toggle="modal" data-target="#modal-edit-cart">
+				Edit
+			</button>
 			<button class="btn btn-xs btn-danger js-delete-cart" data-item="{{id}}">
 				Delete
 			</button>

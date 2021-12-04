@@ -121,14 +121,41 @@
 				<div class="container-fluid text-center">
 					<h1>Payment Successfull!</h1>
 					<p>You have complete your payment!</p>
-					<h2>Total Payment: <br> <strong class="js-success-total">10000</strong><h2>
-					<h3>Remain: <br> <strong class="js-success-remain">10000</strong><h3>
+					<h2>Total Payment: <br> <strong class="js-success-total"></strong><h2>
+					<h3>Remain: <br> <strong class="js-success-remain"></strong><h3>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<a href="<?=site_url('sale/print_invoice')?>" class="btn btn-info js-success-print">OK & Print Invoice</a>
-                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
-              </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-edit-cart">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Edit</h4>
+			</div>
+			<div class="modal-body table-responsive">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Qty</label>
+								<input type="number" id="qty" min="1" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary js-edit-button">Update</button>
+			</div>
 		</div>
 	</div>
 </div>

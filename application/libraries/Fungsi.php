@@ -32,6 +32,21 @@ Class Fungsi {
     public function count_users() {
         $this->ci->load->model('user_m');
         return $this->ci->user_m->get()->num_rows();
-    } 
+    }
+
+	function PdfGenerator($html, $filename, $papper, $orientation){
+		$dompdf = new Dompdf\Dompdf();
+		$dompdf->loadHtml($html);
+
+		// (Optional) Setup the paper size and orientation
+		$dompdf->setPaper($papper, $orientation);
+
+		// Render the HTML as PDF
+		$dompdf->render();
+
+//		ob_end_clean();
+		// Output the generated PDF to Browser
+		$dompdf->stream($filename, ['Attachment' => 0]);
+	}
 
 }

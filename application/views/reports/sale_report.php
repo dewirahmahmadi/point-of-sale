@@ -14,12 +14,10 @@
 		<div class="card">
 			<div class="card-header">
 			</div>
-			<div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan') ?>">
-			</div>
 
 			<!-- /.card-header -->
 			<div class="card-body">
-				<table id="example1" class="table table-bordered table-striped">
+				<table id="js-data-table" class="table table-bordered table-striped">
 					<thead>
 					<tr>
 						<th style="width: 10px">No.</th>
@@ -28,7 +26,7 @@
 						<th>Discount</th>
 						<th>Note</th>
 						<th>Date</th>
-						<th>Petugas</th>
+						<th>Operator</th>
 						<th>Action</th>
 					</tr>
 					</thead>
@@ -46,9 +44,7 @@
 								<h5><span class="badge badge-secondary"><?= $s->user_name; ?></span></h5>
 							</td>
 							<td align="center">
-								<a class="btn btn-default btn-sm" onclick="showDetail(<?= $s->sale_id; ?>)"><i class=" fa fa-eye"></i>
-								</a>
-								<a href="<?= site_url('reports/print_report/' . $s->sale_id); ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa fa-print"></i></a>
+								<a href="<?= site_url('report/print_report/' . $s->sale_id); ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa fa-print"></i></a>
 							</td>
 						</tr>
 					<?php } ?>
@@ -113,30 +109,3 @@
 		</div>
 	</div>
 </div>
-<script>
-	function showDetail(sale_id) {
-		$.ajax({
-			type: "POST",
-			url: "<?= site_url('reports/detail'); ?>",
-			data: {
-				sale_id: sale_id
-			},
-			dataType: "json",
-			success: function(result) {
-				// console.log(result)
-				$('#item_name').text(result['item_name']);
-				$('#price').text(result['price']);
-				$('#qty').text(result['qty']);
-				$('#disc').text(result['discount_item']);
-				$('#total').text(result['total']);
-				$('#sale_id').val(result['sale_id']);
-
-				$('#modal-detail').modal('show')
-			}
-		});
-	}
-
-	function printSale(sale_id) {
-
-	}
-</script>
