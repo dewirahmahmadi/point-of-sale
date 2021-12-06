@@ -24,10 +24,9 @@ class User extends CI_Controller {
         $user->address = null;
         $user->lever = null;
 		$data = array(
-			'page' => 'add',
 			'row' => $user
 		);
-        $this->template->load('template', 'user/user_form', $data);
+        $this->template->load('template', 'user/user_form_add', $data);
 	}
 
 	public function edit($id) {   
@@ -35,16 +34,15 @@ class User extends CI_Controller {
 		if ($query->num_rows() > 0) {
 			$user = $query->row();
 			$data = array(
-				'page' => 'edit',
 				'row' => $user
 			);
-            $this->template->load('template', 'user/user_form', $data);
+            $this->template->load('template', 'user/user_form_edit', $data);
 		} else {
             $this->template->load('template', 'not_found');
         }
 	}
 
-	public function process() {
+    public function save() {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('fullname', 'Full Name', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|is_unique[user.username]');
@@ -55,19 +53,71 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('level', 'Level', 'required');
 
         if ($this->form_validation->run() == FALSE){
-            return $this->template->load('template', 'user/user_form');
+                $user = new stdClass();
+		        $user->username = set_value('username');
+		        $user->name = set_value('fullname');
+                $user->address = set_value('address');
+                $user->level = set_value('level');
+                $data = array(
+                    'row' => $user
+                );
+            return $this->template->load('template', 'user/user_form_add', $data);
         }
 
-		$post = $this->input->post(null, TRUE);
-		if (isset($_POST['add'])) {
-			$this->user_m->add($post);
-		} else if(isset($_POST['edit'])){
-			$this->user_m->edit($post);
-		}
+        $post = $this->input->post(null, TRUE);
+        $this->user_m->add($post);
 
-		if ($this->db->affected_rows() > 0) {
+        if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', "Data successfully saved!");
 			redirect('user');
+		}
+    }
+
+    public function update() {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('fullname', 'Full Name', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|callback_username_check');
+        if ($this->input->post('password')) {
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+            $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]',
+                array('matches' => '%s your password not matches')
+            );
+        }
+
+		if ($this->input->post('passconf')){
+			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'matches[password]',
+				array('matches' => '%s your password not matches')
+			);
+		}
+
+        $this->form_validation->set_rules('level', 'Level', 'required');
+
+		$post = $this->input->post(null, TRUE);
+		if ($this->form_validation->run() == FALSE){
+			$query = $this->user_m->get($post['user_id']);
+			if ($query->num_rows() > 0) {
+				$data['row'] = $query->row();
+				return $this->template->load('template', 'user/user_form_edit', $data);
+			} else {
+				return $this->template->load('template', 'not_found');
+			}
+		}
+
+		$this->user_m->edit($post);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', "Data successfully saved!");
+			redirect('user');
+		}
+    }
+
+	public function username_check() {
+		$post = $this->input->post(null, TRUE);
+		$query = $this->db->query("SELECT * FROM user WHERE username = '$post[username]' AND user_id != '$post[user_id]'");
+		if ($query->num_rows() > 0){
+			$this->form_validation->set_message('username_check', '{field} already exists.');
+			return FALSE;
+		} else {
+			return TRUE;
 		}
 	}
 
