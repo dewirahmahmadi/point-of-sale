@@ -48,6 +48,16 @@ $(document).ready(function () {
       }
     }
 
+	var calculate_row = function ($data_id, $qty) {
+		var table = $('#js-cart-table-body');
+		var tr = table.find("tr#" + $data_id );
+		var price = get_number_only(tr.find('.js-cart-price').text());
+		var total_price = parseInt(price) * parseInt($qty);
+
+		tr.find('.js-total-cart').text(total_price);
+		calculate();
+	}
+
     $(document).on('click', '#js-select-cart', function() {
       var _this = $(this);
       var item_template = $("#table-item").html();
@@ -90,6 +100,15 @@ $(document).ready(function () {
 		discount.attr("readonly", true);
 	});
 
+	$(document).on('keyup', 'input.js-input-qty', function(event) {
+		var input = $(this);
+		if (input.val() > 0) {
+			calculate_row(input.data('item'), input.val())
+		} else {
+			input.val("1")
+		}
+	});
+
     var modal_process_payment = $('#modal-process-payment');
 	var modal_success= $('#modal-success-payment');
     modal_process_payment.on('show.bs.modal', function() {
@@ -115,7 +134,7 @@ $(document).ready(function () {
 				var _this = $(this);
 				var product = {
 					"item_id": _this.data("id"),
-					"qty": _this.find(".js-cart-qty").text(),
+					"qty": _this.find("input.js-input-qty").val(),
 					"total": get_number_only(_this.find(".js-total-cart").text())
 				}
 				products.push(product);
@@ -139,6 +158,7 @@ $(document).ready(function () {
           },
           dataType: "json",
           success: function(result) {
+			  console.log(result);
               if (result.success === true) {
                   modal_process_payment.modal('hide');
 				  modal_success.find('.js-success-total').text(result.total);

@@ -3,12 +3,9 @@
 		<td>{{barcode}}</td>
 		<td>{{productName}}</td>
 		<td>{{stock}}</td>
-		<td>{{price}}</td>
-		<td class="js-cart-qty">1</td>
+		<td class="js-cart-price">{{price}}</td>
+		<td><input type="number" id="qty" min="1" value="1" class="form-control js-input-qty" data-item={{id}}></td>
 		<td align="center">
-			<button class="btn btn-xs btn-info js-edit-cart" data-item="{{id}}" data-toggle="modal" data-target="#modal-edit-cart">
-				Edit
-			</button>
 			<button class="btn btn-xs btn-danger js-delete-cart" data-item="{{id}}">
 				Delete
 			</button>

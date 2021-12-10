@@ -36,7 +36,7 @@ class Sale extends CI_Controller {
             if ($this->db->affected_rows() > 0) {
                 $params = array("success" => true, "total" => $post['cash'], "remain" => $post['change'], "url" => site_url('sale/print_invoice/'.$sale));
             } else {
-                $params = array("success" => false);
+                $params = array("success" => false, "data" => $post);
             }
             echo json_encode($params);
         }
