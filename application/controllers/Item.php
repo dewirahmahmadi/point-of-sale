@@ -23,7 +23,6 @@ class item extends CI_Controller {
 	public function add(){
 		$item = new stdClass();
 		$item->item_id = null;
-        $item->barcode = null;
 		$item->name = null;
         $item->price = null;
         $item->category_id = null;
@@ -63,18 +62,14 @@ class item extends CI_Controller {
 	}
 
 	public function process(){
+		$config['upload_path'] = "./uploads/products";
+		$config['allowed_types'] = "jpeg|jpg|png";
+		$config['max_size'] = 2048;
+		$config['file_name'] = 'item-'.date('ymd').'-'.substr(md5(rand()),0,10);
+		$this->load->library('upload', $config);
+
 		$post = $this->input->post(null, TRUE);
 		if (isset($_POST['add'])) {
-            if ($this->item_m->check_barcode($post['barcode'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Barcode $post[barcode] already used!");
-                redirect('item/add');
-            } else {
-				$config['upload_path'] = "./uploads/products";
-				$config['allowed_types'] = "jpeg|jpg|png";
-				$config['max_size'] = 2048; 
-				$config['file_name'] = 'item-'.date('ymd').'-'.substr(md5(rand()),0,10); 
-
-				$this->load->library('upload', $config);
 				if (@$_FILES['image']['name'] != null) {
 					if (!$this->upload->do_upload('image')){
 						$error = $this->upload->display_errors();
@@ -86,14 +81,18 @@ class item extends CI_Controller {
 					$post['image'] = null;
 				}
 				$this->item_m->add($post);
-            }
 		} else if(isset($_POST['edit'])){
-            if ($this->item_m->check_barcode($post['barcode'], $post['id'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Barcode $post[barcode] already used!");
-                redirect('item/edit'.$post['id']);
-            } else {
+				if (@$_FILES['image']['name'] != null) {
+					if (!$this->upload->do_upload('image')){
+						$error = $this->upload->display_errors();
+						$this->session->set_flashdata('error', $error);
+						redirect('item/edit'.$post['id']);
+					}
+					$post['image'] = $this->upload->data('file_name');
+				} else {
+					$post['image'] = null;
+				}
                 $this->item_m->edit($post);
-            }
 		}
 
 		if ($this->db->affected_rows() > 0) {

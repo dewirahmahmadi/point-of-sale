@@ -18,13 +18,16 @@ class Sale_m extends CI_Model {
 		return $invoice;
 	}
 
-	public function get_sale($id = null) {
+	public function get_sale($id = null, $limit = null) {
 		$this->db->select('*, customer.name as customer_name, user.name as user_name, t_sale.created as sale_created');
 		$this->db->from('t_sale');
 		$this->db->join('user', 't_sale.user_id=user.user_id');
 		$this->db->join('customer', 't_sale.customer_id=customer.customer_id', 'left');
 		if ($id != null) {
 			$this->db->where('sale_id', $id);
+		}
+		if ($limit) {
+			$this->db->limit($limit);
 		}
 		$this->db->order_by('t_sale.created', 'desc');
 		$query = $this->db->get();

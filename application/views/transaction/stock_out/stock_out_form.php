@@ -29,11 +29,11 @@
 							<input type="date" name="date" value="<?=date("Y-m-d")?>" class="form-control" required>
 						</div>
 						<div>
-							<label for="barcode" class="col-form-label">Barcode <font color="#f00">*</font></label>
+							<label for="product" class="col-form-label">Product Name <font color="#f00">*</font></label>
 						</div>
 						<div class="form-group input-group">
 							<input type="hidden" name="item_id" id="item_id">
-							<input type="text" name="barcode" id="barcode" class="form-control" required autofocus>
+							<input type="text" name="product" id="product" class="form-control" required autofocus>
 							<div class="input-group-btn">
                                     <span>
                                         <button type="button" class="input-group-text btn btn-info btn-flat form-control" data-toggle="modal" data-target="#modal-item">
@@ -41,10 +41,6 @@
                                         </button>
                                     </span>
 							</div>
-						</div>
-						<div class="form-group">
-							<label>Item Name </label>
-							<input type="text" name="item_name" id="item_name" value="" class="form-control" readonly>
 						</div>
 						<div class="form-group">
 							<div class="row">
@@ -93,7 +89,6 @@
 					<table class="table table-bordered table-striped" id="table1">
 						<thead>
 						<tr>
-							<th>Barcode</th>
 							<th>Name</th>
 							<th>Unit</th>
 							<th>Price</th>
@@ -104,13 +99,12 @@
 						<tbody>
 						<?php foreach ($items as $item) { ?>
 							<tr>
-								<td><?= $item->barcode; ?></td>
 								<td><?= $item->name; ?></td>
 								<td><?= $item->name_unit; ?></td>
 								<td><?= indo_currency($item->price); ?></td>
 								<td><?= $item->stock; ?></td>
 								<td align="center">
-									<button class="btn btn-xs btn-info" id="select" data-id="<?= $item->item_id; ?>" data-barcode="<?= $item->barcode; ?>" data-name="<?= $item->name; ?>" data-unit="<?= $item->name_unit; ?>" data-stock="<?= $item->stock; ?>">
+									<button class="btn btn-xs btn-info" id="select" data-id="<?= $item->item_id; ?>" data-name="<?= $item->name; ?>" data-unit="<?= $item->name_unit; ?>" data-stock="<?= $item->stock; ?>">
 										<i class="fa fa-check"></i> Select
 									</button>
 								</td>

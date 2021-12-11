@@ -24,7 +24,6 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Barcode</th>
                         <th>Name</th>
                         <th>Category</th>
                         <th>Unit</th>
@@ -39,7 +38,6 @@
                     foreach ($row->result() as $key => $value) {?> 
                         <tr>
                             <th style="width:5%;"><?= $no++ ?></th>
-                            <th><?= $value->barcode; ?></th>
                             <th><?= $value->name; ?></th>
                             <th><?= $value->name_category; ?></th>
                             <th><?= $value->name_unit; ?></th>

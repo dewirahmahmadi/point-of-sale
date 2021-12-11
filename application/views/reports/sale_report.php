@@ -44,6 +44,7 @@
 								<h5><span class="badge badge-secondary"><?= $s->user_name; ?></span></h5>
 							</td>
 							<td align="center">
+								<a href="<?= site_url('report/details/' . $s->sale_id); ?>" target="_blank" class="btn btn-info btn-sm">Details</a>
 								<a href="<?= site_url('report/print_report/' . $s->sale_id); ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa fa-print"></i></a>
 							</td>
 						</tr>

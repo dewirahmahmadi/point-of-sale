@@ -34,6 +34,18 @@ Class Fungsi {
         return $this->ci->user_m->get()->num_rows();
     }
 
+	public function get_newest_product() {
+		$this->ci->load->model('item_m');
+		$item_data= $this->ci->item_m->get_latest();
+		return $item_data;
+	}
+
+	public function get_newest_sale() {
+		$this->ci->load->model('sale_m');
+		$sale_item= $this->ci->sale_m->get_sale(null, 8);
+		return $sale_item;
+	}
+
 	function PdfGenerator($html, $filename, $papper, $orientation){
 		$dompdf = new Dompdf\Dompdf();
 		$dompdf->loadHtml($html);

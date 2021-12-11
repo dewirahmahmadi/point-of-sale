@@ -24,4 +24,13 @@ class Report extends CI_Controller {
 			$this->template->load('template', 'not_found');
 		}
 	}
+
+	public function details($sale_id) {
+		if ($sale_id) {
+			$data['report'] = $this->sale_m->get_sale_detail($sale_id)->result();
+			$this->template->load('template', 'reports/details', $data);
+		} else {
+			$this->template->load('template', 'not_found');
+		}
+	}
 }

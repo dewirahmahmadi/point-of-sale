@@ -25,7 +25,6 @@
 				<thead>
 				<tr>
 					<th>#</th>
-					<th>Barcode</th>
 					<th>Product Name</th>
 					<th>Price</th>
 					<th>Quantity</th>
@@ -37,7 +36,6 @@
 				foreach ($stocks as $stock) {?>
 					<tr>
 						<th style="width:5%;"><?= $no++ ?></th>
-						<th><?= $stock->item_barcode; ?></th>
 						<th><?= $stock->item_name; ?></th>
 						<th><?= indo_currency($stock->item_price); ?></th>
 						<th><?= $stock->qty; ?></th>

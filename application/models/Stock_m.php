@@ -12,7 +12,7 @@ class Stock_m extends CI_Model {
 	}
 
     public function get_stock_in($id = null){
-		$this->db->select('t_stock.*,p_item.barcode as item_barcode, p_item.name as item_name, p_item.price as item_price, supplier.name as supplier_name');
+		$this->db->select('t_stock.*, p_item.name as item_name, p_item.price as item_price, supplier.name as supplier_name');
 		$this->db->from('t_stock');
 		$this->db->join('p_item', 'p_item.item_id=t_stock.item_id');
 		$this->db->join('supplier', 'supplier.supplier_id=t_stock.supplier_id', 'left');
@@ -25,7 +25,7 @@ class Stock_m extends CI_Model {
     }
 
 	public function get_stock_out($id = null){
-		$this->db->select('t_stock.*,p_item.barcode as item_barcode, p_item.name as item_name, p_item.price as item_price, supplier.name as supplier_name');
+		$this->db->select('t_stock.*, p_item.name as item_name, p_item.price as item_price, supplier.name as supplier_name');
 		$this->db->from('t_stock');
 		$this->db->join('p_item', 'p_item.item_id=t_stock.item_id');
 		$this->db->join('supplier', 'supplier.supplier_id=t_stock.supplier_id', 'left');

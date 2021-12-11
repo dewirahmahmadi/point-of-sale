@@ -36,7 +36,7 @@
 			<th>Item Name</th>
 			<th>Price</th>
 			<th>Qty</th>
-			<th>Total</th>
+			<th>Subtotal</th>
 		</tr>
 		<?php foreach ($report as $item) { ?>
 			<tr>

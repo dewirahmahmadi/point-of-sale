@@ -10,7 +10,7 @@ $(document).ready(function () {
             var unit_name = $(this).data('unit');
             var stock = $(this).data('stock');
             $('#item_id').val(item_id);
-            $('#barcode').val(barcode);
+            $('#product').val(name);
             $('#item_name').val(name);
             $('#unit_name').val(unit_name);
             $('#stock').val(stock);

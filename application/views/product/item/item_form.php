@@ -25,10 +25,6 @@
                     <?php echo form_open_multipart('item/process') ?>               
                         <input type="hidden" name="id" value="<?=$row->item_id; ?>" class="form-control">
                         <div class="form-group">
-                            <label>Barcode </label>
-                            <input type="text" name="barcode" value="<?=$row->barcode; ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label>Product Name </label>
                             <input type="text" name="product_name" value="<?=$row->name; ?>" class="form-control" required>
                         </div>
@@ -56,7 +52,16 @@
                         </div>
                         <div class="form-group">
                             <label>Image </label>
-                            <input type="file" name="image" value="<?=$row->image; ?>"  class="form-control" accept="jpg/jpeg/png">
+							<?php if ($page == 'edit') {
+								if ($row->image != null) { ?>
+									<div style="margin-bottom: 5px;">
+										<img src='<?=base_url()."uploads/products/".$row->image; ?>' style="width: 80px;" >
+									</div>
+							<?php
+								}
+							}
+							?>
+                            <input type="file" name="image" class="form-control" accept="jpg/jpeg/png">
                         </div>
                         <div class="form-group">
                             <button type="submit" name="<?=$page ?>" class="btn btn-success btn-flat">Save</button>
