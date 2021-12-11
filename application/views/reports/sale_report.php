@@ -10,48 +10,45 @@
 </section>
 
 <section class="content">
-	<div class="container-fluid">
-		<div class="card">
-			<div class="card-header">
-			</div>
-
-			<!-- /.card-header -->
-			<div class="card-body">
-				<table id="js-data-table" class="table table-bordered table-striped">
-					<thead>
+	<div class="box">
+		<div class="box-header">
+			<h3 class="box-title">Sales Report</h3>
+		</div>
+		<div class="box-body table-responsive">
+			<table id="js-data-table" class="table table-bordered table-striped">
+				<thead>
+				<tr>
+					<th style="width: 10px">No.</th>
+					<th>Invoice</th>
+					<th>Name Customer</th>
+					<th>Discount</th>
+					<th>Note</th>
+					<th>Date</th>
+					<th>Operator</th>
+					<th>Action</th>
+				</tr>
+				</thead>
+				<tbody>
+				<?php $no = 1;
+				foreach ($sales as $s) { ?>
 					<tr>
-						<th style="width: 10px">No.</th>
-						<th>Invoice</th>
-						<th>Name Customer</th>
-						<th>Discount</th>
-						<th>Note</th>
-						<th>Date</th>
-						<th>Operator</th>
-						<th>Action</th>
+						<td><?= $no++; ?></td>
+						<td id="invoice"><?= $s->invoice; ?></td>
+						<td style="text-align: center;"><?= $s->customer_name != null ? $s->customer_name : "Umum"; ?></td>
+						<td><?= indo_currency($s->discount) ?></td>
+						<td><?= $s->note; ?></td>
+						<td style="text-align: center;"><?= indo_date($s->date) ?></td>
+						<td align="center">
+							<h5><span class="badge badge-secondary"><?= $s->user_name; ?></span></h5>
+						</td>
+						<td align="center">
+							<a href="<?= site_url('report/details/' . $s->sale_id); ?>" target="_blank" class="btn btn-info btn-sm">Details</a>
+							<a href="<?= site_url('report/print_report/' . $s->sale_id); ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa fa-print"></i></a>
+						</td>
 					</tr>
-					</thead>
-					<tbody>
-					<?php $no = 1;
-					foreach ($sales as $s) { ?>
-						<tr>
-							<td><?= $no++; ?></td>
-							<td id="invoice"><?= $s->invoice; ?></td>
-							<td style="text-align: center;"><?= $s->customer_name != null ? $s->customer_name : "Umum"; ?></td>
-							<td><?= indo_currency($s->discount) ?></td>
-							<td><?= $s->note; ?></td>
-							<td style="text-align: center;"><?= indo_date($s->date) ?></td>
-							<td align="center">
-								<h5><span class="badge badge-secondary"><?= $s->user_name; ?></span></h5>
-							</td>
-							<td align="center">
-								<a href="<?= site_url('report/details/' . $s->sale_id); ?>" target="_blank" class="btn btn-info btn-sm">Details</a>
-								<a href="<?= site_url('report/print_report/' . $s->sale_id); ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa fa-print"></i></a>
-							</td>
-						</tr>
-					<?php } ?>
-					</tbody>
-				</table>
-			</div>
+				<?php } ?>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </section>
