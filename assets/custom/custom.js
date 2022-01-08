@@ -37,7 +37,7 @@ $(document).ready(function () {
               total_product_price += parseInt(product_total);
           })
 
-          input_sub_total.val(total_product_price);
+          input_sub_total.val(add_symbol(total_product_price));
           if ($discount != null) {
             var final_total = parseInt(total_product_price) - parseInt($discount);
             input_grand_total.val(add_symbol(final_total))
@@ -55,7 +55,7 @@ $(document).ready(function () {
 		var price = get_number_only(tr.find('.js-cart-price').text());
 		var total_price = parseInt(price) * parseInt($qty);
 
-		tr.find('.js-total-cart').text(total_price);
+		tr.find('.js-total-cart').text(add_symbol(total_price));
 		calculate();
 	}
 
@@ -123,9 +123,9 @@ $(document).ready(function () {
         var customer = $('#customer_id').val();
         var date = $('#date').val();
 
-        var sub_total = modal.find('input#sub_total').val();
+        var sub_total = get_number_only(modal.find('input#sub_total').val());
         var discount = modal.find('input#discount').val();
-        var total = modal.find('input#grant_total').val();
+        var total = get_number_only(modal.find('input#grant_total').val());
         var cash = modal.find('input#cash').val();
         var note = modal.find('textarea#notes').val();
         var remain = parseInt(cash) - parseInt(total);
@@ -166,8 +166,8 @@ $(document).ready(function () {
 			  console.log(result);
               if (result.success === true) {
                   modal_process_payment.modal('hide');
-				  modal_success.find('.js-success-total').text(result.total);
-				  modal_success.find('.js-success-remain').text(result.remain);
+				  modal_success.find('.js-success-total').text(add_symbol(result.total));
+				  modal_success.find('.js-success-remain').text(add_symbol(result.remain));
 				  modal_success.find('.js-success-print').attr("href",result.url);
 				  modal_success.modal('show');
               } else {

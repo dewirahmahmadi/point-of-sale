@@ -13,6 +13,7 @@ class item_m extends CI_Model {
         if ($id != null) {
             $this->db->where('item_id', $id);
         }
+		$this->db->order_by("created", "desc");
         $query = $this->db->get();
         return $query;
     }

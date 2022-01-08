@@ -2,7 +2,7 @@
 	<tr id="{{id}}" data-id={{id}}>
 		<td>
 		{{#image}}
-			<img src="{{image}}"/>
+			<img src="<?=base_url()."uploads/products/"?>{{image}}" style="width: 100px;"/>
 		{{/image}}
 		</td>
 		<td>{{productName}}</td>
