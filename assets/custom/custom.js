@@ -5,15 +5,16 @@ $(document).ready(function () {
 
     $(document).on('click', '#select', function() {
             var item_id = $(this).data('id');
-            var barcode = $(this).data('barcode');
             var name = $(this).data('name');
             var unit_name = $(this).data('unit');
             var stock = $(this).data('stock');
+			var image = $(this).data('image');
             $('#item_id').val(item_id);
             $('#product').val(name);
             $('#item_name').val(name);
             $('#unit_name').val(unit_name);
             $('#stock').val(stock);
+			$('#image').val(image);
             $('#modal-item').modal('hide');
     });
 
@@ -39,11 +40,11 @@ $(document).ready(function () {
           input_sub_total.val(total_product_price);
           if ($discount != null) {
             var final_total = parseInt(total_product_price) - parseInt($discount);
-            input_grand_total.val(final_total)
-            grand_total.text(final_total);
+            input_grand_total.val(add_symbol(final_total))
+            grand_total.text(add_symbol(final_total));
           } else {
-            input_grand_total.val(total_product_price)
-            grand_total.text(total_product_price);
+            input_grand_total.val(add_symbol(total_product_price))
+            grand_total.text(add_symbol(total_product_price));
           }
       }
     }
@@ -58,6 +59,10 @@ $(document).ready(function () {
 		calculate();
 	}
 
+	var add_symbol = function ($data) {
+		return "Rp " + $data;
+	}
+
     $(document).on('click', '#js-select-cart', function() {
       var _this = $(this);
       var item_template = $("#table-item").html();
@@ -67,11 +72,11 @@ $(document).ready(function () {
 
       var row = Mustache.render(item_template, {
                   id: _this.data('id'),
-                  barcode: _this.data('barcode'),
+                  image: _this.data('image'),
                   productName: _this.data('name'),
                   stock: _this.data('stock'),
-                  price: "Rp " + _this.data('price'),
-                  total: "Rp " + _this.data('price')
+                  price: add_symbol(_this.data('price')),
+                  total: add_symbol(_this.data('price'))
                 });
       
       if (rowNoItem.length > 0) {

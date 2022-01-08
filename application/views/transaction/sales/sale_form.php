@@ -64,19 +64,16 @@
 							<table width="100%">
 								<tr>
 									<td style="vertical-align: top; width: 30%;">
-										<label for="barcode">Barcode</label>
+										<label for="barcode">Product Name</label>
 									</td>
 									<td>
 										<div class="form-group input-group">
 											<input type="hidden" id="item_id">
 											<input type="hidden" id="price">
 											<input type="hidden" id="stock">
-											<input type="text" id="barcode" class="form-control" readonly>
-											<span class="input-group-btn">
 												<button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">
-													<i class="fa fa-search"></i>
+													<i class="fa fa-search"></i> Search Products
 												</button>
-											</span>
 										</div>
 									</td>
 								</tr>
@@ -109,7 +106,7 @@
 					<table class="table table-bordered table-striped">
 						<thead>
 						<tr>
-							<td>Barcode</td>
+							<td>Images</td>
 							<td>Product Name</td>
 							<td>Stock</td>
 							<td>Price</td>

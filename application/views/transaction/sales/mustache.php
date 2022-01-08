@@ -1,6 +1,10 @@
 <script id="table-item" type="x-tmpl-mustache">
 	<tr id="{{id}}" data-id={{id}}>
-		<td>{{barcode}}</td>
+		<td>
+		{{#image}}
+			<img src="{{image}}"/>
+		{{/image}}
+		</td>
 		<td>{{productName}}</td>
 		<td>{{stock}}</td>
 		<td class="js-cart-price">{{price}}</td>

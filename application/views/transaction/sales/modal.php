@@ -12,6 +12,7 @@
 					<table id="js-data-table" class="table table-bordered table-striped" id="table1">
 						<thead>
 						<tr>
+							<th>Image</th>
 							<th>Name</th>
 							<th>Unit</th>
 							<th>Price</th>
@@ -22,12 +23,17 @@
 						<tbody>
 						<?php foreach ($items as $item) { ?>
 							<tr>
+								<td>
+									<?php if ($item->image){ ?>
+										<img src='<?=base_url()."uploads/products/".$item->image; ?>' style="width: 100px;" >
+									<?php }?>
+								</td>
 								<td><?= $item->name; ?></td>
 								<td><?= $item->name_unit; ?></td>
 								<td><?= indo_currency($item->price); ?></td>
 								<td><?= $item->stock; ?></td>
 								<td align="center">
-									<button class="btn btn-xs btn-info" id="js-select-cart" <?= $item->stock == 0 ? 'disabled' : '' ?> data-id="<?= $item->item_id; ?>" data-name="<?= $item->name; ?>" data-price="<?= $item->price; ?>" data-stock="<?= $item->stock; ?>">
+									<button class="btn btn-xs btn-info" id="js-select-cart" <?= $item->stock == 0 ? 'disabled' : '' ?> data-image="<?= $item->image; ?>" data-id="<?= $item->item_id; ?>" data-name="<?= $item->name; ?>" data-price="<?= $item->price; ?>" data-stock="<?= $item->stock; ?>">
 										<i class="fa fa-check"></i> Select
 									</button>
 								</td>
