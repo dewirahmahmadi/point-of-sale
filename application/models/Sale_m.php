@@ -51,8 +51,8 @@ class Sale_m extends CI_Model {
         $data = [
             'invoice' => $this->generate_invoice(),
             'customer_id' => $post['customer_id'] != null ? $post['customer_id'] : null,
-            'total_price' => (int) $post['sub_total'],
-            'discount' => $post['discount'] != null ? (int) $post['discount'] : null,
+//            'total_price' => (int) $post['sub_total'],
+//            'discount' => $post['discount'] != null ? (int) $post['discount'] : null,
             'final_price' => (int) $post['grand_total'],
             'cash' => (int) $post['cash'],
             'remaining' => (int) $post['change'],

@@ -58,27 +58,27 @@
 			</div>
 			<div class="modal-body table-responsive">
 				<div class="container-fluid">
-					<div class="row">
-						<div class=col-md-6>
-							<div class="form-group">
-								<label for="sub_total">Sub Total</label>
-								<input type="sub_total" id="sub_total" class="form-control" readonly>
-							</div>				
-						</div>
-						<div class=col-md-6>
-						<div class="form-group ">
-								<label for="sub_total">Discount</label>
-								<div class="input-group">
-								<input type="number" id="discount" class="form-control" >
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-info btn-flat js-apply-discount">
-											Apply Discount
-										</button>
-									</span>
-								</div>		
-							</div>
-						</div>
-					</div>
+<!--					<div class="row">-->
+<!--						<div class=col-md-6>-->
+<!--							<div class="form-group">-->
+<!--								<label for="sub_total">Sub Total</label>-->
+<!--								<input type="sub_total" id="sub_total" class="form-control" readonly>-->
+<!--							</div>				-->
+<!--						</div>-->
+<!--						<div class=col-md-6>-->
+<!--						<div class="form-group ">-->
+<!--								<label for="sub_total">Discount</label>-->
+<!--								<div class="input-group">-->
+<!--								<input type="number" id="discount" class="form-control" >-->
+<!--									<span class="input-group-btn">-->
+<!--										<button type="button" class="btn btn-info btn-flat js-apply-discount">-->
+<!--											Apply Discount-->
+<!--										</button>-->
+<!--									</span>-->
+<!--								</div>		-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
@@ -130,7 +130,8 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a href="<?=site_url('sale/print_invoice')?>" class="btn btn-info js-success-print">OK & Print Invoice</a>
+				<button type="button" class="btn btn-default js-reset-data" data-dismiss="modal">Cancel</button>
+				<a href="<?=site_url('sale/print_invoice')?>" target="_blank" class="btn btn-info js-success-print">OK & Print Invoice</a>
 			</div>
 		</div>
 	</div>

@@ -177,4 +177,12 @@ $(document).ready(function () {
       });
     });
 	});
+
+	modal_success.on('show.bs.modal', function() {
+		var modal= $(this);
+		var cancel_button = modal.find('.js-reset-data');
+		cancel_button.on('click', function () {
+			location.reload();
+		});
+	})
 })
