@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>Point Of Sale | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -124,7 +124,7 @@
           <ul class="treeview-menu">
             <li class='<?= $this->uri->segment(1) == "category" ? "active" : "" ?>'><a href="<?=site_url('category')?>"><i class="fa fa-circle-o"></i> Categories</a></li>
             <li class='<?= $this->uri->segment(1) == "unit" ? "active" : "" ?>'><a href="<?=site_url('unit')?>"><i class="fa fa-circle-o"></i> Units</a></li>
-            <li class='<?= $this->uri->segment(1) == "item" ? "active" : "" ?>'><a href="<?=site_url('item')?>"><i class="fa fa-circle-o"></i> Items</a></li>
+            <li class='<?= $this->uri->segment(1) == "item" ? "active" : "" ?>'><a href="<?=site_url('item')?>"><i class="fa fa-circle-o"></i> Product</a></li>
           </ul>
         </li>
         <li class='treeview <?= $this->uri->segment(1) == "sale" || $this->uri->segment(2) == "in" || $this->uri->segment(2) == "out" ? "active" : "" ?>'>
