@@ -1,10 +1,8 @@
 <section class="content-header">
-    <h1>
-        Items
-    </h1>
+    <h1>Products</h1>
     <ol class="breadcrumb">
         <li><a href="<?=site_url('dashboard')?>"><i class="fa fa-th"></i> Dashboard</a></li>
-        <li class="active">Items</li>
+        <li class="active">Product</li>
       </ol>
 </section>
 
@@ -12,7 +10,7 @@
     <?php $this->view('message'); ?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Data Items</h3>
+            <h3 class="box-title">Data Product</h3>
             <div class="pull-right">
                 <a href="<?=site_url('item/add')?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Create Items 
@@ -41,7 +39,7 @@
                             <th><?= $value->name; ?></th>
                             <th><?= $value->name_category; ?></th>
                             <th><?= $value->name_unit; ?></th>
-                            <th><?= $value->price; ?></th>
+                            <th><?= indo_currency($value->price); ?></th>
                             <th><?= $value->stock; ?></th>
                             <th><?php if ($value->image){ ?>
                                     <img src='<?=base_url()."uploads/products/".$value->image; ?>' style="width: 100px;" >

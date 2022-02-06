@@ -52,9 +52,9 @@
                             <label>Level * </label>
                             <select name="level" class="form-control">
                                 <option value="">- Pilih -</option>
-                                <option value="1" <?=  $row->level ==1 ? 'selected' : '' ?> >Admin</option>
-                                <option value="2" <?=  $row->level ==2 ? 'selected' : ''?> >Manager</option>
-                                <option value="3" <?=  $row->level ==3 ? 'selected' : '' ?> >Kasir</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Manager</option>
+                                <option value="3">Kasir</option>
                             </select>
                             <span class="help-block"><?= form_error('level') ?></span>
                         </div>
