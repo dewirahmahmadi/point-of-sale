@@ -1,5 +1,7 @@
 <?php
 
+use Dompdf\Dompdf;
+
 Class Fungsi {
     protected $ci;
 
@@ -47,7 +49,7 @@ Class Fungsi {
 	}
 
 	function PdfGenerator($html, $filename, $papper, $orientation){
-		$dompdf = new Dompdf\Dompdf();
+		$dompdf = new Dompdf();
 		$dompdf->loadHtml($html);
 
 		// (Optional) Setup the paper size and orientation
