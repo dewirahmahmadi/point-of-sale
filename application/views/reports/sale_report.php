@@ -43,7 +43,7 @@
 						</td>
 						<td align="center">
 							<a href="<?= site_url('report/details/' . $s->sale_id); ?>" target="_blank" class="btn btn-info btn-sm">Details</a>
-							<a href="<?= site_url('report/print_report/' . $s->sale_id); ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa fa-print"></i></a>
+							<a href="<?= site_url('report/print_invoice/' . $s->sale_id); ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa fa-print"></i></a>
 						</td>
 					</tr>
 				<?php } ?>

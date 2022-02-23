@@ -33,4 +33,13 @@ class Report extends CI_Controller {
 			$this->template->load('template', 'not_found');
 		}
 	}
+
+	public function print_invoice($sale_id){
+		if (isset($sale_id)) {
+			$data['report'] = $this->sale_m->get_sale_detail($sale_id)->result();
+			$this->load->view('reports/print_data_sale', $data);
+		} else {
+			$this->template->load('template', 'not_found');
+		}
+	}
 }

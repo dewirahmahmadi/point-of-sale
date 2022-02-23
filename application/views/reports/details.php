@@ -79,7 +79,7 @@
 	<!-- this row will not appear when printing -->
 	<div class="row no-print">
 		<div class="col-xs-12">
-			<a href="<?= site_url('report/print_report/' . $report[0]->sale_id); ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+			<a href="<?= site_url('report/print_invoice/' . $report[0]->sale_id); ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
 		</div>
 	</div>
 </section>
