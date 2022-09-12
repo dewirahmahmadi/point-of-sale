@@ -35,7 +35,7 @@
 						<td><?= $no++; ?></td>
 						<td id="invoice"><?= $s->invoice; ?></td>
 						<td style="text-align: center;"><?= $s->customer_name != null ? $s->customer_name : "Umum"; ?></td>
-<!--						<td>--><?//= indo_currency($s->discount) ?><!--</td>-->
+						<!--- discount cek history --->
 						<td><?= $s->note; ?></td>
 						<td style="text-align: center;"><?= indo_date($s->date) ?></td>
 						<td align="center">
